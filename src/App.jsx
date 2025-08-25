@@ -10,9 +10,18 @@ import {
   Instagram,
   Twitter,
   Github,
+  Facebook,
 } from "lucide-react";
 
 // ----- theme hook (dark by default) -----
+function TikTokIcon(props) {
+  return (
+    <svg viewBox="0 0 16 16" fill="currentColor" {...props}>
+      <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z" />
+    </svg>
+  );
+}
+
 function useTheme() {
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem("theme");
@@ -249,14 +258,32 @@ function InstagramEmbed({ url }) {
 
 function About() {
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
-      <p className="text-gray-700 dark:text-gray-300">
-        This is an independent fan project celebrating{" "}
-        <span className="font-semibold">Rachana Dahal</span>—an artist whose
-        work touches grief, loneliness, and the small mercies in between. If
-        these themes are heavy for you today, please take a break or visit the
-        support link in the footer.
-      </p>
+    <div className="rounded-2xl border border-gray-800 bg-gray-900/70 p-6 shadow-sm">
+      <div className="space-y-4 text-gray-300">
+        <p>
+          This is an independent fan project celebrating{" "}
+          <span className="font-semibold text-white">Rachana Dahal</span>. She
+          is a Nepali singer and songwriter whose music often speaks about
+          grief, loneliness, resilience, and small moments of comfort. This page
+          brings together her performances, short lyric excerpts for commentary,
+          and notes that highlight her artistry.
+        </p>
+
+        <p>
+          Rachana blends indie and folk with influences from rock and
+          alternative music. Her songs are emotional and honest, often turning
+          private pain into something listeners can connect with together.
+          Tracks such as <em>Daagbatti</em>, <em>Bhumari</em>, and{" "}
+          <em>Aagya</em> are good starting points if you are new to her work,
+          and her live sessions show the intensity and vulnerability she carries
+          on stage.
+        </p>
+
+        <p className="text-sm text-gray-400">
+          If these themes feel heavy today, please take a pause and look at the
+          support information shared in the footer.
+        </p>
+      </div>
     </div>
   );
 }
@@ -327,9 +354,7 @@ function Music() {
 function Lyrics() {
   const items = [
     {
-      // Title built from the repeating line to avoid mis-titling
       title: "टाट पल्टेर — excerpt",
-      // keep excerpts tiny (<= 10 words)
       excerpt: "उठ न, गरौँ कुराकानी",
       notes: [
         "Insomnia + longing: two sleepless nights, mind ‘flipped over’.",
@@ -339,12 +364,36 @@ function Lyrics() {
         "Voice reads like confession and accusation at once; ending stays unresolved.",
       ],
       links: {
-        youtube: "https://youtu.be/ZMUMAeNqGgo", // official/lyric video you embedded
-        // add a Genius/official lyrics link here if available:
-        // lyrics: "https://genius.com/...”
+        youtube: "https://youtu.be/ZMUMAeNqGgo",
       },
     },
-    // add more songs the same way
+    {
+      title: "दागबत्ती — excerpt",
+      excerpt: "हाँस्नै मर्नँ, तिम्रो यादमा",
+      notes: [
+        "Grief and metaphor: laughter kills in the memory of someone.",
+        "Title “daagbatti” evokes mourning rituals and lingering pain.",
+        "Juxtaposition of life (laugh) and death (burning incense stick).",
+        "Deep emotional resonance: memory as both comfort and torment.",
+      ],
+      links: {
+        youtube: "https://www.youtube.com/watch?&v=rpTiqiu76HE", // lyric video
+      },
+    },
+    {
+      title: "आग्या — excerpt",
+      excerpt: "सचेत रहन फेरि बोलाउँछ",
+      notes: [
+        "Awakening + calling back to awareness and presence.",
+        "Subtle tension between silence and urge to speak again.",
+        "“Aagya” (permission/call) as metaphor for internal permission.",
+        "Highlights her lyrical theme of introspection and emotional truth.",
+      ],
+      links: {
+        youtube: "https://m.youtube.com/watch?v=U_uZhDJ6iFo", // live session lyrics
+      },
+    },
+    // ...add more similarly
   ];
 
   return (
@@ -414,7 +463,7 @@ function Lyrics() {
 function Gallery() {
   return (
     <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-      <InstagramEmbed url="https://www.instagram.com/p/DNTQwtzy6U3" />
+      <InstagramEmbed url="https://www.instagram.com/p/DNnfgGXytq9/?hl=en" />
       <InstagramEmbed url="https://www.instagram.com/p/DM-M1EdydsU" />
       <InstagramEmbed url="https://www.instagram.com/p/DMXzUWAy_Mp" />
       {/* add more posts/reels here */}
@@ -470,23 +519,42 @@ function Footer() {
   return (
     <footer className="border-t py-10 dark:border-gray-800">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 md:flex-row">
-        <p className="text-sm text-gray-600 dark:text-gray-400">
+        <p className="text-sm text-gray-400">
           Fan-made site. Not affiliated with the artist. If you’re struggling,
-          consider{" "}
+          please reach out for help. In Nepal, you can contact the{" "}
           <a
-            href="https://988lifeline.org/"
+            href="https://tuth.org.np/"
             target="_blank"
             rel="noreferrer"
             className="underline"
           >
-            988 Lifeline
+            TUTH Suicide Hotline (+977-1-4412505)
           </a>{" "}
-          or local resources.
+          or organizations like{" "}
+          <a
+            href="https://koshishnepal.org/"
+            target="_blank"
+            rel="noreferrer"
+            className="underline"
+          >
+            Koshish Nepal
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://tponepal.org/"
+            target="_blank"
+            rel="noreferrer"
+            className="underline"
+          >
+            TPO Nepal
+          </a>
+          .
         </p>
+
         <div className="flex items-center gap-4 text-sm">
           <a
             className="inline-flex items-center gap-1 hover:text-gray-900 dark:hover:text-white"
-            href="https://youtube.com"
+            href="https://www.youtube.com/@rachana_dahal"
             target="_blank"
             rel="noreferrer"
           >
@@ -494,7 +562,7 @@ function Footer() {
           </a>
           <a
             className="inline-flex items-center gap-1 hover:text-gray-900 dark:hover:text-white"
-            href="https://instagram.com"
+            href="https://www.instagram.com/rachana_dahal"
             target="_blank"
             rel="noreferrer"
           >
@@ -502,19 +570,19 @@ function Footer() {
           </a>
           <a
             className="inline-flex items-center gap-1 hover:text-gray-900 dark:hover:text-white"
-            href="https://twitter.com"
+            href="https://www.facebook.com/rachanadahalmusic/"
             target="_blank"
             rel="noreferrer"
           >
-            <Twitter className="h-4 w-4" /> Twitter/X
+            <Facebook className="h-4 w-4" /> Facebook
           </a>
           <a
             className="inline-flex items-center gap-1 hover:text-gray-900 dark:hover:text-white"
-            href="https://github.com"
+            href="https://www.tiktok.com/@rachana.live"
             target="_blank"
             rel="noreferrer"
           >
-            <Github className="h-4 w-4" /> Source
+            <TikTokIcon className="h-4 w-4" /> Tiktok
           </a>
         </div>
       </div>

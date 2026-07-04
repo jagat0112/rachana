@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #08070a;
+  color: #c9c2c6;
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background-color: #6e1423;
+  color: #f3ece7;
+}
+
+/* thin, dark scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #08070a;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2229;
+  border-radius: 999px;
+  border: 2px solid #08070a;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3d0c14;
+}
+
+/* film-grain overlay used behind hero / dark panels */
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* soft radial vignette */
+.vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 50% 30%,
+    transparent 0%,
+    rgba(8, 7, 10, 0.4) 65%,
+    rgba(8, 7, 10, 0.95) 100%
+  );
+}
+
+.ember-particle {
+  position: absolute;
+  bottom: -10px;
+  border-radius: 999px;
+  background: radial-gradient(circle, #e0b077 0%, #c48a4a 55%, transparent 75%);
+  filter: blur(0.3px);
+}
+
+/* scroll-reveal: toggled via IntersectionObserver in App.jsx */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.text-glow {
+  text-shadow: 0 0 30px rgba(196, 138, 74, 0.35);
+}
+
+.divider-flame {
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, #c48a4a, transparent);
+}
